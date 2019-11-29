@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyVerifyCode">
+        <attr name="vc_auto_refresh" format="boolean" />
+        <attr name="vc_text_size" format="dimension" />
+        <attr name="vc_text_color" format="color|reference" />
+        <attr name="vc_background" format="color|reference" />
+    </declare-styleable>
+</resources>
