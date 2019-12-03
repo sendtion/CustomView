@@ -129,36 +129,36 @@ public class MyVerifyCode extends View {
         //第一种方式，计算的基准点偏上
         int startX = getWidth()/2 - rect.width()/2;
         int startY = getHeight()/2 - rect.height()/2;
-        int offset = (rect.top + rect.bottom)/2;//随着绘制内容的变化，导致中间位置也会变化
-        //canvas.drawText(verifyCode, startX, startY-offset, paint);
-        //第二种方式，跟第一种效果一样
-        Paint.FontMetricsInt fontMetrics=paint.getFontMetricsInt();
-        offset = (fontMetrics.descent + fontMetrics.ascent)/2;//固定的文字测量工具，中间位置不会随绘制内容发生改变
+        //int offset = (rect.top + rect.bottom)/2;//随着绘制内容的变化，导致中间位置也会变化
+        //第二种方式
+        //Paint.FontMetricsInt fontMetrics=paint.getFontMetricsInt();
+        //offset = (fontMetrics.descent + fontMetrics.ascent)/2;//固定的文字测量工具，中间位置不会随绘制内容发生改变
+        //canvas.drawText(verifyCode, startX, startY, paint);
         //canvas.drawText(verifyCode, startX, startY-offset, paint);
         //第三种方式，貌似更准确，计算的基准点更准，内容变化也会居中显示
         Paint.FontMetricsInt fm = paint.getFontMetricsInt();
         startX = (int) (getWidth() / 2 - paint.measureText(verifyCode) / 2);
         startY = getHeight() / 2 - fm.descent + (fm.bottom - fm.top) / 2;
         startY = getHeight() / 2 + (fm.bottom - fm.top) / 2 - fm.bottom;
-        startY = getHeight() / 2 + (fm.descent - fm.ascent) / 2 - fm.descent;
+        //startY = getHeight() / 2 + (fm.descent - fm.ascent) / 2 - fm.descent;
         canvas.drawText(verifyCode, startX, startY, paint);
 
         //画十字交叉线
-//        paint.setColor(Color.GREEN);
-//        paint.setStrokeWidth(2);
-//        canvas.drawLine(0, getHeight()/2, getWidth(), getHeight()/2, paint);
-//        canvas.drawLine(getWidth()/2, 0, getWidth()/2, getHeight(), paint);
-//
-//        //画基准线
-//        canvas.drawLine(0, getHeight()/2-rect.height()/2, getWidth(), getHeight()/2-rect.height()/2, paint);
-//        canvas.drawLine(0, getHeight()/2+rect.height()/2, getWidth(), getHeight()/2+rect.height()/2, paint);
-//        canvas.drawLine(getWidth()/2-rect.width()/2, 0, getWidth()/2-rect.width()/2, getHeight(), paint);
-//        canvas.drawLine(getWidth()/2+rect.width()/2, 0, getWidth()/2+rect.width()/2, getHeight(), paint);
-//
-//        //画基准点
-//        paint.setColor(Color.BLUE);
-//        paint.setStrokeWidth(10);
-//        canvas.drawPoint(getWidth()/2-rect.width()/2, getHeight()/2-rect.height()/2, paint);
+        paint.setColor(Color.GREEN);
+        paint.setStrokeWidth(2);
+        canvas.drawLine(0, getHeight()/2, getWidth(), getHeight()/2, paint);
+        canvas.drawLine(getWidth()/2, 0, getWidth()/2, getHeight(), paint);
+
+        //画基准线
+        canvas.drawLine(0, getHeight()/2-rect.height()/2, getWidth(), getHeight()/2-rect.height()/2, paint);
+        canvas.drawLine(0, getHeight()/2+rect.height()/2, getWidth(), getHeight()/2+rect.height()/2, paint);
+        canvas.drawLine(getWidth()/2-rect.width()/2, 0, getWidth()/2-rect.width()/2, getHeight(), paint);
+        canvas.drawLine(getWidth()/2+rect.width()/2, 0, getWidth()/2+rect.width()/2, getHeight(), paint);
+
+        //画基准点
+        paint.setColor(Color.BLUE);
+        paint.setStrokeWidth(10);
+        canvas.drawPoint(startX, startY, paint);
 
         //https://www.jianshu.com/p/8c10a8a8e669
         //https://blog.csdn.net/SilenceOO/article/details/73498331
